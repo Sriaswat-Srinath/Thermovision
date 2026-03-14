@@ -1,0 +1,25 @@
+version: "3.9"
+services:
+  api:
+    build: .
+    container_name: thermovision-api
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/app/models
+      - ./uploads:/app/uploads
+      - ./outputs:/app/outputs
+    environment:
+      - RGB_MODEL_PATH=/app/models/yolov8m.pt
+      - IR_MODEL_PATH=/app/models/ir_yolov8m.pt
+      - CONF_THRESH=0.35
+      - NMS_IOU=0.50
+    # Remove block below if no GPU
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
