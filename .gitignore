@@ -1,2 +1,12 @@
-# Created by venv; see https://docs.python.org/3/library/venv.html
-*
+__pycache__/
+*.pyc
+.venv/
+venv/
+.env
+models/*.pt
+uploads/*
+outputs/*
+!uploads/.gitkeep
+!outputs/.gitkeep
+main.cpython-313.pyc
+pyvenv.cfg
